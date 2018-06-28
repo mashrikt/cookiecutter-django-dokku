@@ -122,3 +122,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
+
+# Celery settings
+CELERY_BROKER_URL = config('REDIS_URL', default='redis://localhost:6379')
