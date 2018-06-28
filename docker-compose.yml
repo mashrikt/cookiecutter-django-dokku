@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  worker: &worker
+    build: .
+    volumes:
+      - ./media:/media
+      - .:/app
+    depends_on:
+      - db
+      - redis
+    environment:
+      # Django settings overrides:
+      - ALLOWED_HOSTS=*
+      - DEBUG=True
+      - DATABASE_URL=postgres://myproject:myproject@db:5432/myproject_database
+      - URLWAIT_TIMEOUT=300
+      - REDIS_URL=redis://redis:6379
+
+    command: celery -A myproject worker -l info 
+
+  web:
+    <<: *worker
+
+    command: ./manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+
+  db:
+    image: postgres:10.1
+    environment:
+      - POSTGRES_USER=${DATABASE_USER:-myproject}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-myproject}
+      - POSTGRES_DB=myproject_database
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - db:/var/lib/postgresql/data/pgdata
+
+  redis:
+    image: redis:latest
+
+volumes:
+    db:
+
