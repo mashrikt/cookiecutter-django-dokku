@@ -13,11 +13,11 @@ services:
       # Django settings overrides:
       - ALLOWED_HOSTS=*
       - DEBUG=True
-      - DATABASE_URL=postgres://myproject:myproject@db:5432/myproject_database
+      - DATABASE_URL=postgres://{{cookiecutter.app_name}}:{{cookiecutter.app_name}}@db:5432/{{cookiecutter.app_name}}_database
       - URLWAIT_TIMEOUT=300
       - REDIS_URL=redis://redis:6379
 
-    command: celery -A myproject worker -l info 
+    command: celery -A {{cookiecutter.app_name}} worker -l info
 
   web:
     <<: *worker
@@ -29,9 +29,9 @@ services:
   db:
     image: postgres:10.1
     environment:
-      - POSTGRES_USER=${DATABASE_USER:-myproject}
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-myproject}
-      - POSTGRES_DB=myproject_database
+      - POSTGRES_USER=${DATABASE_USER:-{{cookiecutter.app_name}}}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-{{cookiecutter.app_name}}}
+      - POSTGRES_DB={{cookiecutter.app_name}}_database
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
       - db:/var/lib/postgresql/data/pgdata

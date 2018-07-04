@@ -1,4 +1,4 @@
-# dokku-django-boilerplate
+# Cookiecutter Django Dokku
 A simple boilerplate for using Dokku with Django, Postgres and Celery(Redis backend)
 
 
@@ -9,18 +9,22 @@ A simple boilerplate for using Dokku with Django, Postgres and Celery(Redis back
 The two together can be a handy and powerful combination for rapidly developing and safely maintaining production ready applications.
 
 
-**_dokku-django-boilerplate_** is a boilerplate to start and deploy a Django application using Dokku. 
+**_cookiecutter-django-dokku_**
+A framework for jumpstarting production-ready Django projects and deploying with Dokku.
 
 
 ## Requirements
 ```
-Docker
-Docker Compose
+Cookiecutter https://cookiecutter.readthedocs.io/en/latest/installation.html
+Docker https://docs.docker.com/install/
+Docker Compose https://docs.docker.com/compose/install/
 ```
     
     
 ### Run Project Locally
 ```
+cookiecutter gh:mashrikt/cookiecutter-django-dokku
+
 docker-compose up --build
 ```
 
