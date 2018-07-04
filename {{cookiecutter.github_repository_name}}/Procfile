@@ -1,0 +1,3 @@
+web: bash -c "./bin/run-prod.sh"
+worker: celery -A {{cookiecutter.app_name}} worker -l info
+
