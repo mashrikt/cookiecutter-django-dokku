@@ -137,8 +137,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
+{%- if cookiecutter.use_celery == "y" %}
 # Celery settings
 CELERY_BROKER_URL = config('REDIS_URL', default='redis://localhost:6379')
+{% endif %}
 
 {%- if cookiecutter.email_user == "y" %}
 AUTH_USER_MODEL = 'core.User'

@@ -1,27 +1,35 @@
 version: '3'
 
 services:
+
+  {%- if cookiecutter.use_celery == "y" %}
   worker: &worker
+  {% else %}
+  web:
+  {% endif %}
     build: .
     volumes:
       - ./media:/media
       - .:/app
     depends_on:
       - db
+      {%- if cookiecutter.use_celery == "y" %}
       - redis
+      {% endif %}
     environment:
       # Django settings overrides:
       - ALLOWED_HOSTS=*
       - DEBUG=True
       - DATABASE_URL=postgres://{{cookiecutter.app_name}}:{{cookiecutter.app_name}}@db:5432/{{cookiecutter.app_name}}_database
-      - URLWAIT_TIMEOUT=300
+    {%- if cookiecutter.use_celery == "y" %}
       - REDIS_URL=redis://redis:6379
 
     command: celery -A {{cookiecutter.app_name}} worker -l info
-
+    {% endif %}
+  {%- if cookiecutter.use_celery == "y" %}
   web:
     <<: *worker
-
+  {% endif %}
     command: ./manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
@@ -36,9 +44,9 @@ services:
     volumes:
       - db:/var/lib/postgresql/data/pgdata
 
+  {%- if cookiecutter.use_celery == "y" %}
   redis:
     image: redis:latest
-
+  {% endif %}
 volumes:
     db:
-
