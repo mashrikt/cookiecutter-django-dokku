@@ -1,18 +1,22 @@
-amqp==2.3.2
-billiard==3.5.0.3
-celery==4.2.0
 dj-database-url==0.5.0
 Django==1.11.7
 gunicorn==19.8.1
-kombu==4.2.1
 psycopg2==2.7.5
 python-decouple==3.1
-pytz==2018.4
 redis==2.10.6
 urlwait==0.4
+
+{%- if cookiecutter.use_celery == "y" %}
+# Celery requirements
+amqp==2.3.2
+billiard==3.5.0.3
+celery==4.2.0
+kombu==4.2.1
+pytz==2018.5
 vine==1.1.4
+{% endif %}
 
 {%- if cookiecutter.use_sentry == "y" %}
-# Using raven for optional sentry setup
+# Using raven for sentry
 raven==6.7.0
 {% endif %}
