@@ -14,11 +14,10 @@ A framework for jumpstarting production-ready Django projects and deploying with
 
 
 ## Requirements
-```
-Cookiecutter https://cookiecutter.readthedocs.io/en/latest/installation.html
-Docker https://docs.docker.com/install/
-Docker Compose https://docs.docker.com/compose/install/
-```
+
+* [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/installation.html)
+* [Docker](https://docs.docker.com/install/)
+* [Docker Compose]( https://docs.docker.com/compose/install/)
     
     
 ### Run Project Locally
@@ -75,20 +74,14 @@ git push dokku master
 ```
 
 ## Reference
-Dokku Installation
-https://github.com/dokku/dokku/blob/master/docs/getting-started/installation.md
-
-Dokku Redis
-https://github.com/dokku/dokku-redis
-
-Dokku Application Deployment
-http://dokku.viewdocs.io/dokku/deployment/application-deployment/
-
+* [Dokku Installation](https://github.com/dokku/dokku/blob/master/docs/getting-started/installation.md)
+* [Dokku Redis](https://github.com/dokku/dokku-redis)
+* [Dokku Application Deployment](http://dokku.viewdocs.io/dokku/deployment/application-deployment/)
 
 ## Optional Integrations
 *These can be setup during the initial project integration*
 
-Sentry:
+[Sentry](https://sentry.io):
 
 * To configure sentry you have to add the SENTRY_DSN_URL and 
 initialize it with your own DSN URL that sentry provides for your django project.
