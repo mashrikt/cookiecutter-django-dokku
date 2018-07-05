@@ -11,3 +11,8 @@ pytz==2018.4
 redis==2.10.6
 urlwait==0.4
 vine==1.1.4
+
+{%- if cookiecutter.use_sentry == "y" %}
+# Using raven for optional sentry setup
+raven==6.7.0
+{% endif %}
