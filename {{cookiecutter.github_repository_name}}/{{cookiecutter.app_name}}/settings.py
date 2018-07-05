@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    {%- if cookiecutter.email_user == "y" %}
+    '{{cookiecutter.app_name}}.core'
+    {% endif %}
 ]
 
 MIDDLEWARE = [
@@ -130,3 +134,13 @@ STATIC_ROOT = 'static'
 
 # Celery settings
 CELERY_BROKER_URL = config('REDIS_URL', default='redis://localhost:6379')
+
+{%- if cookiecutter.email_user == "y" %}
+AUTH_USER_MODEL = 'core.User'
+
+# Config to make the registration email only
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+{% endif %}
