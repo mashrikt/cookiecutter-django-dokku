@@ -45,7 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     {%- if cookiecutter.email_user == "y" %}
-    '{{cookiecutter.app_name}}.core'
+    '{{cookiecutter.app_name}}.core',
+    {% endif %}
+
+    {%- if cookiecutter.use_sentry == "y" %}
+    # sentry
+    'raven.contrib.django.raven_compat',
     {% endif %}
 ]
 
@@ -143,4 +148,11 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+{% endif %}
+
+{%- if cookiecutter.use_sentry == "y" %}
+# Sentry configuration
+RAVEN_CONFIG = {
+    'dsn': config('SENTRY_DSN_URL', default=None),
+}
 {% endif %}

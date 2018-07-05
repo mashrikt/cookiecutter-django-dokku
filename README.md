@@ -85,6 +85,13 @@ Dokku Application Deployment
 http://dokku.viewdocs.io/dokku/deployment/application-deployment/
 
 
+## Optional Integrations
+*These can be setup during the initial project integration*
+
+Sentry:
+
+* To configure sentry you have to add the SENTRY_DSN_URL and 
+initialize it with your own DSN URL that sentry provides for your django project.
 
 
 ## License
