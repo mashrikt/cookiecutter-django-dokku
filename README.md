@@ -23,7 +23,10 @@ A framework for jumpstarting production-ready Django projects and deploying with
 ### Run Project Locally
 ```
 cookiecutter gh:mashrikt/cookiecutter-django-dokku
-
+```
+![Alt text](/media/terminalsession.png)
+```
+cd myproject
 docker-compose up --build
 ```
 
