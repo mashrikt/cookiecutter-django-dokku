@@ -44,13 +44,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    {%- if cookiecutter.email_user == "y" %}
-    '{{cookiecutter.app_name}}.users',
+    {%- if cookiecutter.use_rest_framework == "y" %}
+    'rest_framework',
     {% endif %}
 
     {%- if cookiecutter.use_sentry == "y" %}
     # sentry
     'raven.contrib.django.raven_compat',
+    {% endif %}
+
+    {%- if cookiecutter.email_user == "y" %}
+    '{{cookiecutter.app_name}}.users',
     {% endif %}
 ]
 
