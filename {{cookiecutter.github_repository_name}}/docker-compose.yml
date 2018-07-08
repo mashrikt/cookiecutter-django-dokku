@@ -4,9 +4,9 @@ services:
 
   {%- if cookiecutter.use_celery == "y" %}
   worker: &worker
-  {% else %}
+  {%- else %}
   web:
-  {% endif %}
+  {%- endif %}
     build: .
     volumes:
       - ./media:/media
@@ -15,7 +15,7 @@ services:
       - db
       {%- if cookiecutter.use_celery == "y" %}
       - redis
-      {% endif %}
+      {%- endif %}
     environment:
       # Django settings overrides:
       - ALLOWED_HOSTS=*
@@ -25,11 +25,11 @@ services:
       - REDIS_URL=redis://redis:6379
 
     command: celery -A {{cookiecutter.app_name}} worker -l info
-    {% endif %}
+    {%- endif %}
   {%- if cookiecutter.use_celery == "y" %}
   web:
     <<: *worker
-  {% endif %}
+  {%- endif %}
     command: ./manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
@@ -47,6 +47,7 @@ services:
   {%- if cookiecutter.use_celery == "y" %}
   redis:
     image: redis:latest
-  {% endif %}
+  {%- endif %}
+
 volumes:
     db:
