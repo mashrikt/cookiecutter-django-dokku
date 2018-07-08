@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     {%- if cookiecutter.email_user == "y" %}
-    '{{cookiecutter.app_name}}.core',
+    '{{cookiecutter.app_name}}.users',
     {% endif %}
 
     {%- if cookiecutter.use_sentry == "y" %}
@@ -143,7 +143,7 @@ CELERY_BROKER_URL = config('REDIS_URL', default='redis://localhost:6379')
 {% endif %}
 
 {%- if cookiecutter.email_user == "y" %}
-AUTH_USER_MODEL = 'core.User'
+AUTH_USER_MODEL = 'users.User'
 
 # Config to make the registration email only
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'

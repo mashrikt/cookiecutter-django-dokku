@@ -7,7 +7,7 @@ def remove_celery():
 
 
 def remove_email_user():
-    shutil.rmtree(os.path.join("{{cookiecutter.app_name}}", "core"))
+    shutil.rmtree(os.path.join("{{cookiecutter.app_name}}", "users"))
 
 
 def main():
