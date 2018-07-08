@@ -13,9 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 
+{%- if cookiecutter.use_rest_auth == "y" %}
+api_v1_urlpatterns = [
+    url(r'^auth/', include('{{cookiecutter.app_name}}.users.urls', namespace='users')),
+]
+{% endif %}
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    {%- if cookiecutter.use_rest_auth == "y" %}
+    url(r'^api/v1/', include(api_v1_urlpatterns, namespace='v1')),
+    {% endif %}
 ]
