@@ -44,8 +44,25 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    {%- if cookiecutter.use_rest_auth == "y" %}
+    'django.contrib.sites',
+    {% endif %}
+
     {%- if cookiecutter.use_rest_framework == "y" %}
     'rest_framework',
+    {% endif %}
+
+    {%- if cookiecutter.use_rest_auth == "y" %}
+    'rest_framework.authtoken',
+
+    #allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    #rest auth
+    'rest_auth',
+    'rest_auth.registration',
     {% endif %}
 
     {%- if cookiecutter.use_sentry == "y" %}
@@ -58,6 +75,9 @@ INSTALLED_APPS = [
     {% endif %}
 ]
 
+{%- if cookiecutter.use_rest_auth == "y" %}
+SITE_ID = 1
+{% endif %}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -161,4 +181,24 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 RAVEN_CONFIG = {
     'dsn': config('SENTRY_DSN_URL', default=None),
 }
+{% endif %}
+{%- if cookiecutter.use_rest_auth == "y" %}
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+
+REST_USE_JWT = True
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+OLD_PASSWORD_FIELD_ENABLED = True
+ACCOUNT_LOGOUT_ON_GET = False
+
+REST_AUTH_SERIALIZERS = {
+    'LOGIN_SERIALIZER': '{{cookiecutter.app_name}}.users.serializers.LoginSerializer',
+    'USER_DETAILS_SERIALIZER': '{{cookiecutter.app_name}}.users.serializers.UserDetailsSerializer',
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {'REGISTER_SERIALIZER': '{{cookiecutter.app_name}}.users.serializers.RegisterSerializer',}
 {% endif %}

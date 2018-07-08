@@ -6,4 +6,5 @@
     "use_celery": "y",
     "use_sentry": "n",
     "use_rest_framework": "y",
+    "use_rest_auth": "y"
 }
