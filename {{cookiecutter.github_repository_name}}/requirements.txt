@@ -34,15 +34,31 @@ defusedxml==0.5.0
 django-allauth==0.35.0
 django-rest-auth==0.9.3
 djangorestframework-jwt==1.11.0
-idna==2.6
+idna==2.7
 oauthlib==2.0.7
 PyJWT==1.6.1
 python3-openid==3.1.0
 {%- if cookiecutter.use_celery == "n" %}
 pytz==2018.5
 {%- endif %}
-requests==2.18.4
+requests==2.19.1
 requests-oauthlib==0.8.0
 six==1.11.0
-urllib3==1.22
+urllib3==1.23
+{%- endif %}
+
+{%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_restframework_documentation == "y" %}
+{%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_rest_auth == "n" %}
+certifi==2018.4.16
+chardet==3.0.4
+idna==2.7
+requests==2.19.1
+urllib3==1.23
+{%- endif %}
+coreapi==2.3.3
+coreschema==0.0.4
+itypes==1.1.0
+Jinja2==2.10
+MarkupSafe==1.0
+uritemplate==3.0.0
 {%- endif %}
