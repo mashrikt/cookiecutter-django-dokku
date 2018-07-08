@@ -20,3 +20,9 @@ vine==1.1.4
 # Using raven for sentry
 raven==6.7.0
 {% endif %}
+
+{%- if cookiecutter.use_rest_framework == "y" %}
+django-filter==1.1.0
+djangorestframework==3.8.2
+Markdown==2.6.11
+{% endif %}

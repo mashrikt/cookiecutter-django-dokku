@@ -4,5 +4,6 @@
     "description": "My Project",
     "email_user": "y",
     "use_celery": "y",
-    "use_sentry": "n"
+    "use_sentry": "n",
+    "use_rest_framework": "y",
 }
