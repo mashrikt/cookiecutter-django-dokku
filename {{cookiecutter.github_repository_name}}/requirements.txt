@@ -27,7 +27,7 @@ djangorestframework==3.8.2
 Markdown==2.6.11
 {%- endif %}
 
-{%- if cookiecutter.use_rest_auth == "y" %}
+{%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_rest_auth == "y" %}
 certifi==2018.4.16
 chardet==3.0.4
 defusedxml==0.5.0

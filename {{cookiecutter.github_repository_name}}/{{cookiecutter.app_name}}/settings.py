@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    {%- if cookiecutter.use_rest_auth == "y" %}
+    {%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_rest_auth == "y" %}
     'django.contrib.sites',
     {%- endif %}
 
@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     # rest framework
     'rest_framework',
     {%- endif %}
-    {%- if cookiecutter.use_rest_auth == "y" %}
+    {%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_rest_auth == "y" %}
     'rest_framework.authtoken',
 
     # allauth
@@ -74,7 +74,7 @@ INSTALLED_APPS = [
     {%- endif %}
 ]
 
-{%- if cookiecutter.use_rest_auth == "y" %}
+{%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_rest_auth == "y" %}
 SITE_ID = 1
 {%- endif %}
 
@@ -183,7 +183,7 @@ RAVEN_CONFIG = {
 }
 {%- endif %}
 
-{%- if cookiecutter.use_rest_auth == "y" %}
+{%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_rest_auth == "y" %}
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
