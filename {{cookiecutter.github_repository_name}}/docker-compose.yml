@@ -29,8 +29,12 @@ services:
   {%- if cookiecutter.use_celery == "y" %}
   web:
     <<: *worker
-  {%- endif %}
-    command: ./manage.py runserver 0.0.0.0:8000
+  {% endif %}
+    command: >
+      bash -c "urlwait &&
+               ./manage.py migrate &&
+               ./manage.py runserver 0.0.0.0:8000"
+
     ports:
       - "8000:8000"
 
