@@ -43,41 +43,41 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     {%- if cookiecutter.use_rest_auth == "y" %}
     'django.contrib.sites',
-    {% endif %}
+    {%- endif %}
 
     {%- if cookiecutter.use_rest_framework == "y" %}
+    # rest framework
     'rest_framework',
-    {% endif %}
-
+    {%- endif %}
     {%- if cookiecutter.use_rest_auth == "y" %}
     'rest_framework.authtoken',
 
-    #allauth
+    # allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
-    #rest auth
+    # rest auth
     'rest_auth',
     'rest_auth.registration',
-    {% endif %}
+    {%- endif %}
 
     {%- if cookiecutter.use_sentry == "y" %}
     # sentry
     'raven.contrib.django.raven_compat',
-    {% endif %}
+    {%- endif %}
 
     {%- if cookiecutter.email_user == "y" %}
     '{{cookiecutter.app_name}}.users',
-    {% endif %}
+    {%- endif %}
 ]
 
 {%- if cookiecutter.use_rest_auth == "y" %}
 SITE_ID = 1
-{% endif %}
+{%- endif %}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -164,7 +164,7 @@ STATIC_ROOT = 'static'
 {%- if cookiecutter.use_celery == "y" %}
 # Celery settings
 CELERY_BROKER_URL = config('REDIS_URL', default='redis://localhost:6379')
-{% endif %}
+{%- endif %}
 
 {%- if cookiecutter.email_user == "y" %}
 AUTH_USER_MODEL = 'users.User'
@@ -174,14 +174,15 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-{% endif %}
+{%- endif %}
 
 {%- if cookiecutter.use_sentry == "y" %}
 # Sentry configuration
 RAVEN_CONFIG = {
     'dsn': config('SENTRY_DSN_URL', default=None),
 }
-{% endif %}
+{%- endif %}
+
 {%- if cookiecutter.use_rest_auth == "y" %}
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -201,4 +202,4 @@ REST_AUTH_SERIALIZERS = {
 }
 
 REST_AUTH_REGISTER_SERIALIZERS = {'REGISTER_SERIALIZER': '{{cookiecutter.app_name}}.users.serializers.RegisterSerializer',}
-{% endif %}
+{%- endif %}

@@ -14,19 +14,18 @@ celery==4.2.0
 kombu==4.2.1
 pytz==2018.5
 vine==1.1.4
-{% endif %}
+{%- endif %}
 
 {%- if cookiecutter.use_sentry == "y" %}
 # Using raven for sentry
 raven==6.7.0
-{% endif %}
+{%- endif %}
 
 {%- if cookiecutter.use_rest_framework == "y" %}
 django-filter==1.1.0
 djangorestframework==3.8.2
 Markdown==2.6.11
-{% endif %}
-
+{%- endif %}
 
 {%- if cookiecutter.use_rest_auth == "y" %}
 certifi==2018.4.16
@@ -41,9 +40,9 @@ PyJWT==1.6.1
 python3-openid==3.1.0
 {%- if cookiecutter.use_celery == "n" %}
 pytz==2018.5
-{% endif %}
+{%- endif %}
 requests==2.18.4
 requests-oauthlib==0.8.0
 six==1.11.0
 urllib3==1.22
-{% endif %}
+{%- endif %}
