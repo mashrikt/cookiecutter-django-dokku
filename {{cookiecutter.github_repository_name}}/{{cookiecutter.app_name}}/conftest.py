@@ -2,7 +2,7 @@ import pytest
 from {{cookiecutter.github_repository_name}} import settings
 from rest_framework.test import APIClient
 
-from {{cookiecutter.github_repository_name}}.users.tests import UserFactory
+from {{cookiecutter.github_repository_name}}.users.tests.factories import UserFactory
 
 
 @pytest.fixture(scope='session')

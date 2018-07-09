@@ -2,7 +2,7 @@ import pytest
 import factory
 from django.urls import reverse
 
-from {{cookiecutter.app_name}}.users.tests import fake, User, UserFactory
+from .factories import fake, User, UserFactory
 
 
 class TestRegistration:
