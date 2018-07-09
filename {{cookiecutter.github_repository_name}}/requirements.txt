@@ -26,13 +26,6 @@ django-filter==1.1.0
 djangorestframework==3.8.2
 Markdown==2.6.11
 
-{%- if "{{ cookiecutter.email_user }}".lower() == "n" %}
-factory-boy==2.10.0
-
-pytest-django==3.1.2
-pytest-cov==2.5.1
-{%- endif %}
-
 {%- endif %}
 
 {%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_rest_auth == "y" %}
@@ -53,6 +46,15 @@ requests==2.19.1
 requests-oauthlib==0.8.0
 six==1.11.0
 urllib3==1.23
+
+{%- if cookiecutter.email_user == "y" %}
+# Pytest requirements
+factory-boy==2.10.0
+
+pytest-django==3.1.2
+pytest-cov==2.5.1
+{%- endif %}
+
 {%- endif %}
 
 {%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_restframework_documentation == "y" %}
