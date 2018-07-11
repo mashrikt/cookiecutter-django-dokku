@@ -18,7 +18,7 @@ from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+HOME_DIR = os.path.realpath(os.path.join(BASE_DIR, '..'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -86,6 +86,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = '{{cookiecutter.app_name}}.urls'
@@ -160,6 +161,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
+
+MEDIA_DIR = os.path.realpath(os.path.join(HOME_DIR, 'media/'))
+
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 {%- if cookiecutter.use_celery == "y" %}
 # Celery settings
