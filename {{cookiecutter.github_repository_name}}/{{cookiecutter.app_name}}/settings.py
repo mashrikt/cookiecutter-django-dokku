@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY',
                     default='zs$zd9my5&ob&v56s=!3s1#rbk(%rajxbkrjtbsz1+&)9*k-7b')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS',
                        default='localhost', cast=Csv())
