@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="#"><img src="/media/django-dokku.png" /></a>
+  <a href="#"><img src="/media/django-dokku.png" height=100/></a>
 </p>
 
 <h1 align="center">
@@ -10,14 +10,11 @@
 </p>
 <br/>
 
+Instead of using django-admin startproject to start a new Django application from scratch, you can use this cookiecutter project to start with a Dockerized application ready for Dokku deployment. Some additional common Django features like an extended User model with Email as identification token field, setting up restframework, etc can also be initialized during the initial project set up.
 
-**_Django_** The Web framework for perfectionists with deadlines.
+Dokku is a mini-Heroku, powered by Docker. It simplifies the process of building and managing the lifestyle of applications. Once Dokku is set up in a host, you can push codes via Git, just like Heroku. 
 
-**_Dokku_** A docker-powered PaaS that helps you build and manage the lifecycle of applications
-
-The two together can be a handy and powerful combination for rapidly developing and safely maintaining
-your production application.
-
+Instructions below specify how to start your project from this cookiecutter template and also a guideline on how to set up Dokku on your server. 
 
 ## Requirements
 
@@ -86,7 +83,7 @@ Since we consider testing mandatory, hence these APIs ship with a few basic test
 * Again, if you're using Restframework, you can plug in the Restframework Docs as well.
 
 
-### Setting up Dokku in a Linux Server
+### Setting up Dokku on a Linux Server
 ```
 # install the latest stable version of dokku
 wget https://raw.githubusercontent.com/dokku/dokku/v0.12.10/bootstrap.sh;
