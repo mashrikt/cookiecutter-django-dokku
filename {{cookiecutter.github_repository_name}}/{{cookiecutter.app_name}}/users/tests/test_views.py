@@ -13,6 +13,9 @@ class TestRegistration:
     def register_data(self):
         data = {
             'email': fake.email(),
+            {%- if cookiecutter.email_user == "n" %}
+            'username': fake.first_name(),
+            {%- endif %}
             'password1': self.test_password,
             'password2': self.test_password,
         }
@@ -21,7 +24,12 @@ class TestRegistration:
     def test_user_registration_success(self, client, register_data, db):
         request = client.post(self.url, register_data)
 
+        {%- if cookiecutter.email_user == "n" %}
+        user = User.objects.filter(id=request.data["user"]["pk"], is_active=True)
+        {%- else %}
         user = User.objects.filter(id=request.data["user"]["id"], is_active=True)
+        {%- endif %}
+
 
         assert request.status_code == 201
         assert user.exists()
@@ -45,32 +53,42 @@ class TestRegistration:
 class TestLogin:
 
     url = reverse("v1:users:rest_login")
-    email = fake.email()
     password = "test_pass"
 
-    @pytest.fixture
-    def login_user(self, user):
-        user.email = self.email
-        user.set_password(self.password)
-        user.save()
+    def test_login(self, user, client):
 
-        return user
-
-    def test_login(self, login_user, client):
-
-        assert login_user.check_password(self.password)
+        assert user.check_password(self.password)
 
         data = {
-            "email": self.email,
+            {%- if cookiecutter.email_user == "n" %}
+            "username": user.username,
+            {%- else %}
+            "email": user.email,
+            {%- endif %}
             "password": self.password
         }
 
         request = client.post(self.url, data)
 
         assert request.status_code == 200
-        assert request.data["user"]["email"] in self.email
+        assert request.data["user"]["email"] in user.email
 
-    def test_wrong_email_login(self, client, db):
+    {%- if cookiecutter.email_user == "n" %}
+
+    def test_wrong_username_login(self, user, client, db):
+
+        data = {
+            "username": fake.first_name(),
+            "password": self.password
+        }
+
+        request = client.post(self.url, data)
+
+        assert request.status_code == 400
+
+    {%- else %}
+
+    def test_wrong_email_login(self, user, client):
 
         data = {
             "email": fake.email(),
@@ -81,10 +99,16 @@ class TestLogin:
 
         assert request.status_code == 404
 
-    def test_wrong_password_login(self, login_user, client):
+    {%- endif %}
+
+    def test_wrong_password_login(self, user, client):
 
         data = {
-            "email": login_user.email,
+            {%- if cookiecutter.email_user == "n" %}
+            "username": user.username,
+            {%- else %}
+            "email": user.email,
+            {%- endif %}
             "password": fake.word()
         }
 

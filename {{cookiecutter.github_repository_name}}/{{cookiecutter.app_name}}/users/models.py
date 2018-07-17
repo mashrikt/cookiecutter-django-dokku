@@ -1,13 +1,16 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+{%- if cookiecutter.email_user == "y" %}
 from django.db import models
 from django.utils import timezone
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 
 from .managers import UserManager
+{%- endif %}
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    {%- if cookiecutter.email_user == "y" %}
     """
     A fully featured User model with admin-compliant permissions that uses
     a full-length email field as the username.
@@ -49,3 +52,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         Returns the short name for the user.
         """
         return self.first_name
+    {%- else %}
+    pass
+    {%- endif %}
