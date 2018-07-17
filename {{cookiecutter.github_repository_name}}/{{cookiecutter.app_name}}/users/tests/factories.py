@@ -12,5 +12,8 @@ class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = User
 
-    email = fake.email()
+    email = factory.Faker("email")
+    {%- if cookiecutter.email_user == "n" %}
+    username = factory.Faker("name")
+    {%- endif %}
     password = factory.PostGenerationMethodCall('set_password', 'test_pass')

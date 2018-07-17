@@ -7,12 +7,13 @@ def remove_celery():
 
 
 def remove_rest_auth():
-    os.remove(os.path.join("{{cookiecutter.app_name}}", "users", "serializers.py"))
-    os.remove(os.path.join("{{cookiecutter.app_name}}", "users", "urls.py"))
+    shutil.rmtree(os.path.join("{{cookiecutter.app_name}}", "users"))
 
 
 def remove_email_user():
-    shutil.rmtree(os.path.join("{{cookiecutter.app_name}}", "users"))
+    os.remove(os.path.join("{{cookiecutter.app_name}}", "users", "serializers.py"))
+    os.remove(os.path.join("{{cookiecutter.app_name}}", "users", "forms.py"))
+    os.remove(os.path.join("{{cookiecutter.app_name}}", "users", "managers.py"))
 
 
 def main():

@@ -174,7 +174,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 CELERY_BROKER_URL = config('REDIS_URL', default='redis://localhost:6379')
 {%- endif %}
 
-{%- if cookiecutter.email_user == "y" %}
+{%- if cookiecutter.email_user == "y" and cookiecutter.use_rest_auth == "y" %}
 AUTH_USER_MODEL = 'users.User'
 
 # Config to make the registration email only
@@ -204,10 +204,13 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 OLD_PASSWORD_FIELD_ENABLED = True
 ACCOUNT_LOGOUT_ON_GET = False
 
+{%- if cookiecutter.email_user == "y" %}
 REST_AUTH_SERIALIZERS = {
     'LOGIN_SERIALIZER': '{{cookiecutter.app_name}}.users.serializers.LoginSerializer',
     'USER_DETAILS_SERIALIZER': '{{cookiecutter.app_name}}.users.serializers.UserDetailsSerializer',
 }
 
 REST_AUTH_REGISTER_SERIALIZERS = {'REGISTER_SERIALIZER': '{{cookiecutter.app_name}}.users.serializers.RegisterSerializer',}
+{%- endif %}
+
 {%- endif %}

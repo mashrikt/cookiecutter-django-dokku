@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf.urls.static import static
+from {{cookiecutter.app_name}} import settings
 {%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_restframework_documentation == "y" %}
 from rest_framework.documentation import include_docs_urls
 {%- endif %}

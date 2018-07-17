@@ -1,8 +1,9 @@
+from .models import User
+{%- if cookiecutter.email_user == "y" %}
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext_lazy as _
 
-from .models import User
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 
 
@@ -30,6 +31,6 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
     readonly_fields = ('date_joined', 'last_login')
-
+{%- endif %}
 
 admin.site.register(User, CustomUserAdmin)
