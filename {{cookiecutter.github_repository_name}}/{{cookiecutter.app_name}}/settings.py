@@ -174,8 +174,9 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 CELERY_BROKER_URL = config('REDIS_URL', default='redis://localhost:6379')
 {%- endif %}
 
-{%- if cookiecutter.email_user.lower() == "y" and cookiecutter.use_rest_auth.lower() == "y" %}
 AUTH_USER_MODEL = 'users.User'
+
+{%- if cookiecutter.email_user.lower() == "y" and cookiecutter.use_rest_auth.lower() == "y" %}
 
 # Config to make the registration email only
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
