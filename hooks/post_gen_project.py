@@ -17,14 +17,17 @@ def remove_email_user():
 
 
 def main():
-    if "{{ cookiecutter.use_celery }}".lower() == "n":
-        remove_celery()
+    try:
+        if "{{ cookiecutter.use_celery }}".lower() == "n":
+            remove_celery()
 
-    if "{{ cookiecutter.use_rest_auth }}".lower() == "n":
-        remove_rest_auth()
+        if "{{ cookiecutter.use_rest_auth }}".lower() == "n":
+            remove_rest_auth()
 
-    if "{{ cookiecutter.email_user }}".lower() == "n":
-        remove_email_user()
+        if "{{ cookiecutter.email_user }}".lower() == "n":
+            remove_email_user()
+    except OSError:
+        pass
 
 
 if __name__ == "__main__":
