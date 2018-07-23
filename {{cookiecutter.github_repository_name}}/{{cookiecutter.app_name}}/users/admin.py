@@ -1,5 +1,5 @@
 from .models import User
-{%- if cookiecutter.email_user == "y" %}
+{%- if cookiecutter.email_user.lower() == "y" %}
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext_lazy as _

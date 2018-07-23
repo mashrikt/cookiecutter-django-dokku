@@ -43,15 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    {%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_rest_auth == "y" %}
+    {%- if cookiecutter.use_rest_framework.lower() == "y" and cookiecutter.use_rest_auth == "y" %}
     'django.contrib.sites',
     {%- endif %}
 
-    {%- if cookiecutter.use_rest_framework == "y" %}
+    {%- if cookiecutter.use_rest_framework.lower() == "y" %}
     # rest framework
     'rest_framework',
     {%- endif %}
-    {%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_rest_auth == "y" %}
+    {%- if cookiecutter.use_rest_framework.lower() == "y" and cookiecutter.use_rest_auth == "y" %}
     'rest_framework.authtoken',
 
     # allauth
@@ -64,17 +64,17 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     {%- endif %}
 
-    {%- if cookiecutter.use_sentry == "y" %}
+    {%- if cookiecutter.use_sentry.lower() == "y" %}
     # sentry
     'raven.contrib.django.raven_compat',
     {%- endif %}
 
-    {%- if cookiecutter.email_user == "y" %}
+    {%- if cookiecutter.email_user.lower() == "y" %}
     '{{cookiecutter.app_name}}.users',
     {%- endif %}
 ]
 
-{%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_rest_auth == "y" %}
+{%- if cookiecutter.use_rest_framework.lower() == "y" and cookiecutter.use_rest_auth.lower() == "y" %}
 SITE_ID = 1
 {%- endif %}
 
@@ -169,12 +169,12 @@ MEDIA_URL = '/media/'
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-{%- if cookiecutter.use_celery == "y" %}
+{%- if cookiecutter.use_celery.lower() == "y" %}
 # Celery settings
 CELERY_BROKER_URL = config('REDIS_URL', default='redis://localhost:6379')
 {%- endif %}
 
-{%- if cookiecutter.email_user == "y" and cookiecutter.use_rest_auth == "y" %}
+{%- if cookiecutter.email_user.lower() == "y" and cookiecutter.use_rest_auth.lower() == "y" %}
 AUTH_USER_MODEL = 'users.User'
 
 # Config to make the registration email only
@@ -184,14 +184,14 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 {%- endif %}
 
-{%- if cookiecutter.use_sentry == "y" %}
+{%- if cookiecutter.use_sentry.lower() == "y" %}
 # Sentry configuration
 RAVEN_CONFIG = {
     'dsn': config('SENTRY_DSN_URL', default=None),
 }
 {%- endif %}
 
-{%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_rest_auth == "y" %}
+{%- if cookiecutter.use_rest_framework.lower() == "y" and cookiecutter.use_rest_auth.lower() == "y" %}
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
@@ -204,7 +204,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 OLD_PASSWORD_FIELD_ENABLED = True
 ACCOUNT_LOGOUT_ON_GET = False
 
-{%- if cookiecutter.email_user == "y" %}
+{%- if cookiecutter.email_user.lower() == "y" %}
 REST_AUTH_SERIALIZERS = {
     'LOGIN_SERIALIZER': '{{cookiecutter.app_name}}.users.serializers.LoginSerializer',
     'USER_DETAILS_SERIALIZER': '{{cookiecutter.app_name}}.users.serializers.UserDetailsSerializer',
