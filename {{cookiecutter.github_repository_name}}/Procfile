@@ -1,5 +1,4 @@
 web: bash -c "./bin/run-prod.sh"
-
-
+{%- if cookiecutter.use_celery == "y" %}
 worker: celery -A {{cookiecutter.app_name}} worker -l info
-
+{%- endif %}

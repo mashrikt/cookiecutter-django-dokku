@@ -1,2 +1,4 @@
 web=1
+{%- if cookiecutter.use_celery == "y" %}
 worker=1
+{%- endif %}
