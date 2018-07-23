@@ -13,7 +13,7 @@ class TestRegistration:
     def register_data(self):
         data = {
             'email': fake.email(),
-            {%- if cookiecutter.email_user == "n" %}
+            {%- if cookiecutter.email_user.lower() == "n" %}
             'username': fake.first_name(),
             {%- endif %}
             'password1': self.test_password,
@@ -24,7 +24,7 @@ class TestRegistration:
     def test_user_registration_success(self, client, register_data, db):
         request = client.post(self.url, register_data)
 
-        {%- if cookiecutter.email_user == "n" %}
+        {%- if cookiecutter.email_user.lower() == "n" %}
         user = User.objects.filter(id=request.data["user"]["pk"], is_active=True)
         {%- else %}
         user = User.objects.filter(id=request.data["user"]["id"], is_active=True)
@@ -60,7 +60,7 @@ class TestLogin:
         assert user.check_password(self.password)
 
         data = {
-            {%- if cookiecutter.email_user == "n" %}
+            {%- if cookiecutter.email_user.lower() == "n" %}
             "username": user.username,
             {%- else %}
             "email": user.email,
@@ -73,7 +73,7 @@ class TestLogin:
         assert request.status_code == 200
         assert request.data["user"]["email"] in user.email
 
-    {%- if cookiecutter.email_user == "n" %}
+    {%- if cookiecutter.email_user.lower() == "n" %}
 
     def test_wrong_username_login(self, user, client, db):
 
@@ -104,7 +104,7 @@ class TestLogin:
     def test_wrong_password_login(self, user, client):
 
         data = {
-            {%- if cookiecutter.email_user == "n" %}
+            {%- if cookiecutter.email_user.lower() == "n" %}
             "username": user.username,
             {%- else %}
             "email": user.email,

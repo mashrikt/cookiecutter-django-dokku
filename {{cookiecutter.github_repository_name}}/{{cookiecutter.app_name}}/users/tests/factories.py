@@ -13,7 +13,7 @@ class UserFactory(factory.django.DjangoModelFactory):
         model = User
 
     email = factory.Faker("email")
-    {%- if cookiecutter.email_user == "n" %}
+    {%- if cookiecutter.email_user.lower() == "n" %}
     username = factory.Faker("name")
     {%- endif %}
     password = factory.PostGenerationMethodCall('set_password', 'test_pass')
