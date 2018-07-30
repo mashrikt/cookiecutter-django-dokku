@@ -1,11 +1,11 @@
 {
-    "github_repository_name": "myproject",
-    "app_name": "myproject",
-    "description": "My Project",
-    "email_user": "y",
-    "use_celery": "y",
-    "use_sentry": "n",
-    "use_rest_framework": "y",
-    "use_rest_auth": "y",
-    "use_restframework_documentation": "y"
+  "github_repository_name": "myproject",
+  "app_name": "myproject",
+  "description": "My Project",
+  "email_user": "y",
+  "use_celery": "y",
+  "use_sentry": "n",
+  "use_rest_framework": "y",
+  "use_auth_endpoints": "y",
+  "use_restframework_documentation": "n"
 }

@@ -10,11 +10,16 @@
 </p>
 <br/>
 
-Instead of using django-admin startproject to start a new Django application from scratch, you can use this cookiecutter project to start with a Dockerized application ready for Dokku deployment. Some additional common Django features like an extended User model with Email as identification token field, setting up restframework, etc can also be initialized during the initial project set up.
+Instead of using django-admin startproject to start a new Django application from scratch, you can use this
+cookiecutter project to start with a Dockerized application ready for Dokku deployment. Some additional common Django
+features like an extended User model with Email as identification token field, setting up restframework, etc can also be
+initialized during the initial project set up.
 
-Dokku is a mini-Heroku, powered by Docker. It simplifies the process of building and managing the lifestyle of applications. Once Dokku is set up in a host, you can push codes via Git, just like Heroku. 
+Dokku is a mini-Heroku, powered by Docker. It simplifies the process of building and managing the lifestyle of
+applications. Once Dokku is set up in a host, you can push codes via Git, just like Heroku.
 
-Instructions below specify how to start your project from this cookiecutter template and also a guideline on how to set up Dokku on your server. 
+Instructions below specify how to start your project from this cookiecutter template and also a guideline on how to set
+up Dokku on your server.
 
 ## Requirements
 
@@ -35,12 +40,13 @@ docker-compose up --build
 
 
 ## Features
+* [Custom user model](https://docs.djangoproject.com/en/2.0/topics/auth/customizing/#specifying-a-custom-user-model)
 
 * [Postgres Database](https://www.postgresql.org/)
 
-* [Whitenoise](http://whitenoise.evans.io/en/stable/) for static file serving
+* [Whitenoise](http://whitenoise.evans.io/en/stable/) for static file serving in Production
 
-* [Gunicorn](http://gunicorn.org/), Python WSGI HTTP Server
+* [Gunicorn](http://gunicorn.org/), Python WSGI HTTP Server used in Production
 
 
 ## Optional Integrations
@@ -49,18 +55,18 @@ docker-compose up --build
 [Email User](https://docs.djangoproject.com/en/1.11/topics/auth/customizing/#substituting-a-custom-user-model)
 
 * Django by default ships with username as the identification token field. (ie. login with username)
-Select 'y' to email _user for using email instead through an extended User model in your myproject.users app.
+Select 'y' to email _user for using email instead.
 
 
 [Celery](http://www.celeryproject.org/)
 
-* Select 'y' to use_celery for Celery with a Redis backend for Distributed Task Queue.
+* Select 'y' to use_celery for Celery with a Redis backend for Distributed Tasks.
 
 
 [Sentry](https://sentry.io):
 
 * To configure sentry you have to add the SENTRY_DSN_URL and
-initialize it with your own DSN URL that sentry provides for your django project.
+initialize it with your own DSN URL that sentry provides for your project.
 
 ```
 dokku config:set myproject SENTRY_DSN_URL=MYSENTRYDSNURL
@@ -72,10 +78,12 @@ dokku config:set myproject SENTRY_DSN_URL=MYSENTRYDSNURL
 Select 'y' to use_rest_framework prompt for this library.
 
 
-[django-rest-auth](https://django-rest-auth.readthedocs.io/en/latest/)
+[django-allauth](http://django-allauth.readthedocs.io/en/latest/installation.html)/[django-rest-auth](https://django-rest-auth.readthedocs.io/en/latest/)
 
-* If you chose to use_rest_framework, you can also opt for REST authentication endpoints.
-Since we consider testing mandatory, hence these APIs ship with a few basic test cases written with pytest.
+By selecting 'y' to "use_auth_endpoints":
+* if you're not using restframework, you can get [allauth's accounts views](https://django-allauth.readthedocs.io/en/latest/views.html).
+* if you chose to use_rest_framework, you get [rest-auth's API endpoints](http://django-rest-auth.readthedocs.io/en/latest/api_endpoints.html).
+These APIs ship with a few basic test cases written with pytest.
 
 
 [Restframework Docs](http://www.django-rest-framework.org/topics/documenting-your-api/)
@@ -131,6 +139,8 @@ git push dokku master
 ```
 
 ## Reference
+* [Cookiecutter Django](https://github.com/pydanny/cookiecutter-django/)
+* [cookiecutter-django-rest](https://github.com/agconti/cookiecutter-django-rest)
 * [Dokku Installation](https://github.com/dokku/dokku/blob/master/docs/getting-started/installation.md)
 * [Dokku Redis](https://github.com/dokku/dokku-redis)
 * [Dokku Application Deployment](http://dokku.viewdocs.io/dokku/deployment/application-deployment/)

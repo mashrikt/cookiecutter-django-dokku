@@ -22,7 +22,7 @@ from rest_framework.documentation import include_docs_urls
 {%- endif %}
 
 
-{%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_rest_auth == "y" %}
+{%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_auth_endpoints == "y" %}
 api_v1_urlpatterns = [
     url(r'^auth/', include('{{cookiecutter.app_name}}.users.urls', namespace='users')),
 ]
@@ -30,8 +30,10 @@ api_v1_urlpatterns = [
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    {%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_rest_auth == "y" %}
+    {%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_auth_endpoints == "y" %}
     url(r'^api/v1/', include(api_v1_urlpatterns, namespace='v1')),
+    {%- elif cookiecutter.use_rest_framework == "n" and cookiecutter.use_auth_endpoints == "y" %}
+    url(r'^accounts/', include('allauth.urls')),
     {%- endif %}
     {%- if cookiecutter.use_rest_framework == "y" and cookiecutter.use_restframework_documentation == "y" %}
     url(r'^docs/', include_docs_urls(title='{{cookiecutter.app_name}} API')),

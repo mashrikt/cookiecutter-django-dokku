@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    {%- if cookiecutter.use_rest_framework.lower() == "y" and cookiecutter.use_rest_auth == "y" %}
+    {%- if cookiecutter.use_auth_endpoints.lower() == "y" %}
     'django.contrib.sites',
     {%- endif %}
 
@@ -51,30 +51,29 @@ INSTALLED_APPS = [
     # rest framework
     'rest_framework',
     {%- endif %}
-    {%- if cookiecutter.use_rest_framework.lower() == "y" and cookiecutter.use_rest_auth == "y" %}
-    'rest_framework.authtoken',
-
+    {%- if cookiecutter.use_auth_endpoints.lower() == "y" %}
     # allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-
+    {%- if cookiecutter.use_rest_framework.lower() == "y" %}
+    'rest_framework.authtoken',
     # rest auth
     'rest_auth',
     'rest_auth.registration',
     {%- endif %}
+
+    {% endif %}
 
     {%- if cookiecutter.use_sentry.lower() == "y" %}
     # sentry
     'raven.contrib.django.raven_compat',
     {%- endif %}
 
-    {%- if cookiecutter.email_user.lower() == "y" %}
-    '{{cookiecutter.app_name}}.users',
-    {%- endif %}
+    '{{cookiecutter.app_name}}.users'
 ]
 
-{%- if cookiecutter.use_rest_framework.lower() == "y" and cookiecutter.use_rest_auth.lower() == "y" %}
+{%- if cookiecutter.use_auth_endpoints.lower() == "y" %}
 SITE_ID = 1
 {%- endif %}
 
@@ -174,8 +173,9 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 CELERY_BROKER_URL = config('REDIS_URL', default='redis://localhost:6379')
 {%- endif %}
 
-{%- if cookiecutter.email_user.lower() == "y" and cookiecutter.use_rest_auth.lower() == "y" %}
 AUTH_USER_MODEL = 'users.User'
+
+{%- if cookiecutter.email_user.lower() == "y" and cookiecutter.use_auth_endpoints.lower() == "y" %}
 
 # Config to make the registration email only
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
@@ -191,7 +191,7 @@ RAVEN_CONFIG = {
 }
 {%- endif %}
 
-{%- if cookiecutter.use_rest_framework.lower() == "y" and cookiecutter.use_rest_auth.lower() == "y" %}
+{%- if cookiecutter.use_rest_framework.lower() == "y" and cookiecutter.use_auth_endpoints.lower() == "y" %}
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
