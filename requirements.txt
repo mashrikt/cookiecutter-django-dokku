@@ -1,4 +1,6 @@
 arrow==0.12.1
+atomicwrites==1.1.5
+attrs==18.1.0
 binaryornot==0.4.4
 certifi==2018.4.16
 chardet==3.0.4
@@ -9,7 +11,12 @@ idna==2.7
 Jinja2==2.10
 jinja2-time==0.2.0
 MarkupSafe==1.0
+more-itertools==4.3.0
+pluggy==0.7.1
 poyo==0.4.1
+py==1.5.4
+pytest==3.7.1
+pytest-cookies==0.3.0
 python-dateutil==2.7.3
 requests==2.19.1
 six==1.11.0
