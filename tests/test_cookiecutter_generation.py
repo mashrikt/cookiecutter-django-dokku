@@ -4,8 +4,8 @@ import pytest
 @pytest.fixture
 def context():
     return {
-        "github_repository_name": "myproject",
-        "app_name": "myproject",
+        "github_repository_name": "my-project",
+        "app_name": "my_project",
         "description": "My Project",
         "email_user": "y",
         "use_celery": "y",
@@ -13,7 +13,7 @@ def context():
         "use_rest_framework": "y",
         "use_rest_auth": "y",
         "use_restframework_documentation": "y"
-}
+    }
 
 
 def test_default_configuration(cookies, context):
