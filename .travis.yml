@@ -1,0 +1,12 @@
+sudo: required
+
+services:
+  - docker
+
+language: python
+
+python: 3.6
+
+script:
+  - pytest tests
+  - sh tests/test_docker.sh
