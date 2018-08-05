@@ -5,10 +5,13 @@
 <h1 align="center">
   Cookiecutter Django Dokku
 </h1>
-<p align="center">
-  A framework for jumpstarting Django projects and deploying with Dokku.
-</p>
-<br/>
+
+A framework for jumpstarting Django projects and deploying with Dokku.
+
+[![Build Status](https://travis-ci.org/mashrikt/cookiecutter-django-dokku.svg?branch=master)](https://travis-ci.org/mashrikt/cookiecutter-django-dokku)
+[![Python 3.6](https://img.shields.io/badge/Python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+[![Django 1.11](https://img.shields.io/badge/Django-1.11-lightgrey.svg)](https://docs.djangoproject.com/en/2.1/releases/1.11/)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
 Instead of using django-admin startproject to start a new Django application from scratch, you can use this
 cookiecutter project to start with a Dockerized application ready for Dokku deployment. Some additional common Django
