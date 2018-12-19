@@ -28,9 +28,7 @@ def remove_rest_auth():
 
 
 def remove_email_user():
-    remove_file(os.path.join("{{cookiecutter.app_name}}", "users", "serializers.py"))
-    remove_file(os.path.join("{{cookiecutter.app_name}}", "users", "forms.py"))
-    remove_file(os.path.join("{{cookiecutter.app_name}}", "users", "managers.py"))
+    remove_file(os.path.join("{{cookiecutter.app_name}}", "users"))
 
 
 def main():

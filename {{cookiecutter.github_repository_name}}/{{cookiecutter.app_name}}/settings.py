@@ -70,7 +70,9 @@ INSTALLED_APPS = [
     'raven.contrib.django.raven_compat',
     {%- endif %}
 
-    '{{cookiecutter.app_name}}.users'
+    {%- if cookiecutter.email_user.lower() == "y" %}
+    '{{cookiecutter.app_name}}.users',
+    {%- endif %}
 ]
 
 {%- if cookiecutter.use_auth_endpoints.lower() == "y" %}
@@ -173,7 +175,11 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 CELERY_BROKER_URL = config('REDIS_URL', default='redis://localhost:6379')
 {%- endif %}
 
+{%- if cookiecutter.email_user.lower() == "y" %}
+
 AUTH_USER_MODEL = 'users.User'
+
+{%- endif %}
 
 {%- if cookiecutter.email_user.lower() == "y" and cookiecutter.use_auth_endpoints.lower() == "y" %}
 
