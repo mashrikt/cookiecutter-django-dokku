@@ -1,4 +1,3 @@
-{%- if cookiecutter.email_user.lower() == "y" %}
 from django.db import models
 from django.utils import timezone
 from django.utils.http import urlquote
@@ -50,10 +49,3 @@ class User(AbstractBaseUser, PermissionsMixin):
         Returns the short name for the user.
         """
         return self.first_name
-{%- else %}
-from django.contrib.auth.models import AbstractUser
-
-
-class User(AbstractUser):
-    pass
-{%- endif %}
